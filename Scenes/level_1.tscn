@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqb6y03jw6qri"]
+[gd_scene load_steps=9 format=3 uid="uid://dqb6y03jw6qri"]
 
 [ext_resource type="PackedScene" uid="uid://bvpr6a7t7mhw5" path="res://Scenes/player.tscn" id="1_lo510"]
 [ext_resource type="Texture2D" uid="uid://5i3c4hd38o6v" path="res://Assets/sprites/world_tileset.png" id="2_6bn0x"]
 [ext_resource type="PackedScene" uid="uid://clftphvb6jt3d" path="res://Scenes/hud.tscn" id="2_yb2px"]
-[ext_resource type="Script" path="res://Scenes/node_2d.gd" id="4_hs4am"]
+[ext_resource type="Script" path="res://Scripts/level_controller.gd" id="4_eykmg"]
+[ext_resource type="PackedScene" uid="uid://bpduaj3is87li" path="res://Scenes/killzone.tscn" id="5_mo4ir"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oytnw"]
 texture = ExtResource("2_6bn0x")
@@ -152,9 +153,13 @@ texture = ExtResource("2_6bn0x")
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_oytnw")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ypn3o"]
+distance = -88.0
+
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_lo510")]
+unique_name_in_owner = true
 
 [node name="HUD" parent="Player" instance=ExtResource("2_yb2px")]
 script = null
@@ -165,4 +170,12 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131069, 2, 0, 131064, 2, 0, 131065, 2, 0, 131066, 2, 0, 131067, 2, 0, 131068, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 196611, 2, 0, 196612, 2, 0, 131076, 2, 0, 131077, 2, 0, 65541, 2, 0, 65542, 2, 0, 65543, 2, 0, 65544, 2, 0, 65545, 2, 0, 65546, 2, 0, 131083, 2, 0, 196619, 2, 0, 196618, 2, 0, 131081, 2, 0, 131080, 2, 0, 131079, 2, 0, 131078, 2, 0, 65538, 2, 0, 65537, 2, 0, 65539, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 65540, 2, 0, -65532, 2, 0, -131068, 2, 0, -196604, 2, 0, -65533, 2, 0, -65531, 2, 0, -65530, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, -65528, 2, 0, 196613, 2, 0, 196607, 2, 0, 262142, 2, 0, 262141, 2, 0, 262140, 2, 0, 196604, 2, 0, 196603, 2, 0, 196602, 2, 0, 196601, 2, 0, 65529, 2, 0, -7, 2, 0, -65543, 2, 0, -65542, 2, 0, -131078, 2, 0, -6, 2, 0, 65530, 2, 0, 65531, 2, 0, -5, 2, 0, -65541, 2, 0)
 
 [node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("4_hs4am")
+
+[node name="LevelController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_eykmg")
+
+[node name="killzone" parent="." instance=ExtResource("5_mo4ir")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+shape = SubResource("WorldBoundaryShape2D_ypn3o")

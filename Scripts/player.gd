@@ -36,3 +36,9 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		current_health -= 5
+
+func get_damage(damage: int):
+	current_health -= damage
+
+func die():
+	current_health = 0
