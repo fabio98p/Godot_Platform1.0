@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 "
 
 [node name="HUD" type="Camera2D"]
+limit_bottom = 270
 script = SubResource("GDScript_pg4e2")
 
 [node name="health" type="Label" parent="."]
