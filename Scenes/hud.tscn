@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clftphvb6jt3d"]
 
-[ext_resource type="FontFile" uid="uid://n3r60nunhudw" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="1_1rhu3"]
+[ext_resource type="FontFile" uid="uid://n3r60nunhudw" path="res://Assets/assets_brackeysgames/fonts/PixelOperator8-Bold.ttf" id="1_1rhu3"]
 
 [sub_resource type="GDScript" id="GDScript_pg4e2"]
 script/source = "extends Camera2D

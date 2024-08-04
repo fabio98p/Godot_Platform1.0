@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvpr6a7t7mhw5"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_wutyt"]
-[ext_resource type="Texture2D" uid="uid://dfrgs4vler321" path="res://Assets/sprites/knight.png" id="2_1uuqv"]
+[ext_resource type="Texture2D" uid="uid://dfrgs4vler321" path="res://Assets/assets_brackeysgames/sprites/knight.png" id="2_1uuqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eund7"]
 size = Vector2(10, 15)

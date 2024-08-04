@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://l22oexhcntqw"]
 
-[ext_resource type="Texture2D" uid="uid://be6dg3nwgmuyg" path="res://Assets/sprites/slime_green.png" id="1_aqxci"]
+[ext_resource type="Texture2D" uid="uid://be6dg3nwgmuyg" path="res://Assets/assets_brackeysgames/sprites/slime_green.png" id="1_aqxci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujodi"]
 size = Vector2(10, 10)
