@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqb6y03jw6qri"]
+[gd_scene load_steps=10 format=3 uid="uid://dqb6y03jw6qri"]
 
 [ext_resource type="PackedScene" uid="uid://bvpr6a7t7mhw5" path="res://Scenes/player.tscn" id="1_lo510"]
 [ext_resource type="Texture2D" uid="uid://5i3c4hd38o6v" path="res://Assets/assets_brackeysgames/sprites/world_tileset.png" id="2_6bn0x"]
 [ext_resource type="PackedScene" uid="uid://clftphvb6jt3d" path="res://Scenes/hud.tscn" id="2_yb2px"]
 [ext_resource type="Script" path="res://Scripts/level_controller.gd" id="4_eykmg"]
 [ext_resource type="PackedScene" uid="uid://bpduaj3is87li" path="res://Scenes/killzone.tscn" id="5_mo4ir"]
+[ext_resource type="PackedScene" uid="uid://bnau7ryeemcai" path="res://Scenes/npc.tscn" id="6_6cd7j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oytnw"]
 texture = ExtResource("2_6bn0x")
@@ -207,3 +208,6 @@ position = Vector2(1, 271)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 shape = SubResource("WorldBoundaryShape2D_ypn3o")
+
+[node name="NPC" parent="." instance=ExtResource("6_6cd7j")]
+position = Vector2(-112, -41)

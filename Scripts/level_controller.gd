@@ -2,6 +2,7 @@ extends Node
 
 @onready var player: CharacterBody2D = %Player
 
+var current_interact_object: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,3 +27,15 @@ func player_is_dead():
 
 func restart_game():
 	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
+
+func enable_interactive_area(is_interactive, element):
+	
+	if is_interactive:
+		current_interact_object = element
+		print("isInteractive")
+		Interact()
+	else:
+		print("no more interactive")
+
+func Interact():
+	current_interact_object.start_interaction()

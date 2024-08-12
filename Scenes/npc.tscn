@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnau7ryeemcai"]
+
+[ext_resource type="Script" path="res://Scripts/npc.gd" id="1_4ymmp"]
+[ext_resource type="Texture2D" uid="uid://c3gvbmw38lcus" path="res://Assets/assets_unity/SPA_Player_Ginger.png" id="2_h82h6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p3j3"]
+size = Vector2(13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_140q3"]
+atlas = ExtResource("2_h82h6")
+region = Rect2(0, 38, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i286"]
+atlas = ExtResource("2_h82h6")
+region = Rect2(38, 38, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t6n0"]
+atlas = ExtResource("2_h82h6")
+region = Rect2(76, 38, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gn4f"]
+atlas = ExtResource("2_h82h6")
+region = Rect2(114, 38, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujeff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_140q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i286")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t6n0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gn4f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ca0a"]
+size = Vector2(73, 45)
+
+[node name="NPC" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_4ymmp")
+
+[node name="NpcCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -12)
+shape = SubResource("RectangleShape2D_2p3j3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_ujeff")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="interactivityArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactivityArea"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_3ca0a")
+
+[connection signal="body_entered" from="interactivityArea" to="." method="_on_interactivity_area_body_entered"]
+[connection signal="body_exited" from="interactivityArea" to="." method="_on_interactivity_area_body_exited"]
