@@ -1,6 +1,9 @@
+class_name Killzone
 extends Area2D
 
-@onready var level_controller: Node = %LevelController
+#@onready var level_controller: Node = %LevelController
+
+signal player_entered_killzone
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,5 +17,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	level_controller.player_died()
+	player_entered_killzone.emit()
+	#level_controller.player_died()
 	print("you died")

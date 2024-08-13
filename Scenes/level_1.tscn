@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqb6y03jw6qri"]
+[gd_scene load_steps=11 format=3 uid="uid://dqb6y03jw6qri"]
 
 [ext_resource type="PackedScene" uid="uid://bvpr6a7t7mhw5" path="res://Scenes/player.tscn" id="1_lo510"]
 [ext_resource type="Texture2D" uid="uid://5i3c4hd38o6v" path="res://Assets/assets_brackeysgames/sprites/world_tileset.png" id="2_6bn0x"]
@@ -183,6 +183,8 @@ sources/2 = SubResource("TileSetAtlasSource_oytnw")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ypn3o"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o45ae"]
+
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_lo510")]
@@ -211,3 +213,9 @@ shape = SubResource("WorldBoundaryShape2D_ypn3o")
 
 [node name="NPC" parent="." instance=ExtResource("6_6cd7j")]
 position = Vector2(-112, -41)
+
+[node name="killzone2" parent="." instance=ExtResource("5_mo4ir")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone2"]
+position = Vector2(101, 16)
+shape = SubResource("CircleShape2D_o45ae")

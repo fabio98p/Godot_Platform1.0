@@ -1,5 +1,6 @@
 extends Node
 
+
 @onready var player: CharacterBody2D = %Player
 
 var current_interact_object: Node
@@ -17,10 +18,12 @@ func _process(delta: float) -> void:
 func player_take_amage(damage: int):
 	player.get_damage(damage)
 
-func player_died():
-	player.die()
+#func player_died():
+	#player.die()
 	
 func player_is_dead():
+	if !player:
+		return false
 	if player.current_health > 0:
 		return false
 	return true
@@ -39,3 +42,7 @@ func enable_interactive_area(is_interactive, element):
 
 func Interact():
 	current_interact_object.start_interaction()
+
+#
+#func _on_player_die() -> void:
+	#pass # Replace with function body.
