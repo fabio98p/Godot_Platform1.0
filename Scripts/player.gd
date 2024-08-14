@@ -1,8 +1,10 @@
 extends CharacterBody2D
+class_name Player
 
 var max_health: int = 100
 var current_health: int = max_health
 
+signal player_is_dead
 #signal die
 #signal take_damage
 
@@ -13,28 +15,14 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 
 func _ready() -> void:
-	# get all nodes
-	var nodes_tree = get_tree().get_root()
-	var all_nodes = []
-	all_nodes.push_back(nodes_tree)
-	for child in nodes_tree.get_children():
-		all_nodes = get_all_children(child, all_nodes)
-
 	#connect to the killzone signal
-	for node in all_nodes:
+	for node in Utils.get_all_nodes():
 		if node is Killzone:
 			print("connecting to killzone")
 			node.connect("player_entered_killzone", Callable(self, "_on_player_entered_killzone"))
 
 func _process(delta: float) -> void:
 	hud.get_node("health").text = str(current_health) + " HP"
-
-
-func get_all_children(in_node, array := []):
-	array.push_back(in_node)
-	for child in in_node.get_children():
-		array = get_all_children(child, array)
-	return array
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -62,11 +50,19 @@ func _input(event: InputEvent) -> void:
 
 func take_damage(damage: int):
 	current_health -= damage
+	if current_health <= 0:
+		player_is_dead.emit()
 
 #func _on_die():
 	#current_health = 0
 
 
 func _on_player_entered_killzone() -> void:
-	print("player is died nowwowowoowowow")
 	current_health = 0
+	player_is_dead.emit()
+
+
+func _on_player_is_dead() -> void:
+	# change animation with dieing animation
+	# play dieing sound
+	print("player dieing in player script")

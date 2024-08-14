@@ -219,3 +219,5 @@ position = Vector2(-112, -41)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone2"]
 position = Vector2(101, 16)
 shape = SubResource("CircleShape2D_o45ae")
+
+[connection signal="player_is_dead" from="Player" to="LevelController" method="_on_player_player_is_dead"]

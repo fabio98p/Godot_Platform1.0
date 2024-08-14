@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://1tvg3wje6nu3"]
 
-[ext_resource type="PackedScene" uid="uid://bpduaj3is87li" path="res://Scenes/killzone.tscn" id="2_tx3lo"]
 [ext_resource type="PackedScene" uid="uid://bvpr6a7t7mhw5" path="res://Scenes/player.tscn" id="3_t8bjt"]
 [ext_resource type="PackedScene" uid="uid://clftphvb6jt3d" path="res://Scenes/hud.tscn" id="3_yrnfa"]
+[ext_resource type="Script" path="res://Scripts/killzone.gd" id="4_psmgr"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1hmv"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4y16r"]
+distance = -145.0
 
 [node name="Level_2" type="Node"]
-
-[node name="killzone" parent="." instance=ExtResource("2_tx3lo")]
-script = null
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-position = Vector2(-1, 156)
-shape = SubResource("WorldBoundaryShape2D_r1hmv")
 
 [node name="Player" parent="." instance=ExtResource("3_t8bjt")]
 
 [node name="HUD" parent="Player" instance=ExtResource("3_yrnfa")]
+
+[node name="Killzone" type="Area2D" parent="."]
+script = ExtResource("4_psmgr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_4y16r")

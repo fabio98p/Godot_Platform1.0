@@ -5,28 +5,20 @@ extends Node
 
 var current_interact_object: Node
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if player_is_dead():
-		restart_game()
+func _ready() -> void:	
+	#connect to the player signal
+	for node in Utils.get_all_nodes():
+		if node is Player:
+			print("connecting to player in level_controller")
+			node.connect("player_is_dead", Callable(self, "_on_player_is_dead"))
 
 func player_take_amage(damage: int):
 	player.get_damage(damage)
-
-#func player_died():
-	#player.die()
 	
-func player_is_dead():
-	if !player:
-		return false
-	if player.current_health > 0:
-		return false
-	return true
+func _on_player_is_dead():
+	print("onplayerisdead")
+	restart_game()
 
 func restart_game():
 	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
@@ -42,7 +34,3 @@ func enable_interactive_area(is_interactive, element):
 
 func Interact():
 	current_interact_object.start_interaction()
-
-#
-#func _on_player_die() -> void:
-	#pass # Replace with function body.
