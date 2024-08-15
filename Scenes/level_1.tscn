@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqb6y03jw6qri"]
+[gd_scene load_steps=13 format=3 uid="uid://dqb6y03jw6qri"]
 
 [ext_resource type="PackedScene" uid="uid://bvpr6a7t7mhw5" path="res://Scenes/player.tscn" id="1_lo510"]
 [ext_resource type="Texture2D" uid="uid://5i3c4hd38o6v" path="res://Assets/assets_brackeysgames/sprites/world_tileset.png" id="2_6bn0x"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/level_controller.gd" id="4_eykmg"]
 [ext_resource type="PackedScene" uid="uid://bpduaj3is87li" path="res://Scenes/killzone.tscn" id="5_mo4ir"]
 [ext_resource type="PackedScene" uid="uid://bnau7ryeemcai" path="res://Scenes/npc.tscn" id="6_6cd7j"]
+[ext_resource type="Script" path="res://Scripts/damagezone.gd" id="7_mnx42"]
+[ext_resource type="Texture2D" uid="uid://btt43rkesuevg" path="res://icon.svg" id="8_mdblc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oytnw"]
 texture = ExtResource("2_6bn0x")
@@ -183,7 +185,7 @@ sources/2 = SubResource("TileSetAtlasSource_oytnw")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ypn3o"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o45ae"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_emm75"]
 
 [node name="Level1" type="Node2D"]
 
@@ -214,10 +216,17 @@ shape = SubResource("WorldBoundaryShape2D_ypn3o")
 [node name="NPC" parent="." instance=ExtResource("6_6cd7j")]
 position = Vector2(-112, -41)
 
-[node name="killzone2" parent="." instance=ExtResource("5_mo4ir")]
+[node name="Damagezone" type="Area2D" parent="."]
+script = ExtResource("7_mnx42")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone2"]
-position = Vector2(101, 16)
-shape = SubResource("CircleShape2D_o45ae")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damagezone"]
+position = Vector2(88, 19)
+shape = SubResource("CircleShape2D_emm75")
+
+[node name="Sprite2D" type="Sprite2D" parent="Damagezone"]
+position = Vector2(88, 20)
+scale = Vector2(0.179688, 0.203125)
+texture = ExtResource("8_mdblc")
 
 [connection signal="player_is_dead" from="Player" to="LevelController" method="_on_player_player_is_dead"]
+[connection signal="player_entered_damagezone" from="Damagezone" to="Player" method="_on_damagezone_player_entered_damagezone"]

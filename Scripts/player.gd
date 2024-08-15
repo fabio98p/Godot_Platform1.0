@@ -5,8 +5,7 @@ var max_health: int = 100
 var current_health: int = max_health
 
 signal player_is_dead
-#signal die
-#signal take_damage
+signal player_take_damage
 
 @onready var hud: Camera2D = $HUD
 
@@ -20,6 +19,9 @@ func _ready() -> void:
 		if node is Killzone:
 			print("connecting to killzone")
 			node.connect("player_entered_killzone", Callable(self, "_on_player_entered_killzone"))
+		if node is Damagezone:
+			print("connecting to damagezone")
+			node.connect("player_entered_damagezone", Callable(self, "_on_player_entered_damagezone"))
 
 func _process(delta: float) -> void:
 	hud.get_node("health").text = str(current_health) + " HP"
@@ -49,20 +51,20 @@ func _input(event: InputEvent) -> void:
 		current_health -= 5
 
 func take_damage(damage: int):
+	player_take_damage.emit()
 	current_health -= damage
 	if current_health <= 0:
 		player_is_dead.emit()
-
-#func _on_die():
-	#current_health = 0
-
 
 func _on_player_entered_killzone() -> void:
 	current_health = 0
 	player_is_dead.emit()
 
-
 func _on_player_is_dead() -> void:
 	# change animation with dieing animation
 	# play dieing sound
 	print("player dieing in player script")
+
+
+func _on_player_entered_damagezone(damage: int) -> void:
+	take_damage(damage)
