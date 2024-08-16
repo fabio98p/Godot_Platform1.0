@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnau7ryeemcai"]
+[gd_scene load_steps=11 format=3 uid="uid://bnau7ryeemcai"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_4ymmp"]
 [ext_resource type="Texture2D" uid="uid://c3gvbmw38lcus" path="res://Assets/assets_unity/SPA_Player_Ginger.png" id="2_h82h6"]
+[ext_resource type="Script" path="res://Scripts/interactive_area.gd" id="3_rnj2w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2p3j3"]
 size = Vector2(13, 24)
@@ -59,11 +60,11 @@ sprite_frames = SubResource("SpriteFrames_ujeff")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="interactivityArea" type="Area2D" parent="."]
+[node name="InteractiveArea" type="Area2D" parent="."]
+script = ExtResource("3_rnj2w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactivityArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea"]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_3ca0a")
 
-[connection signal="body_entered" from="interactivityArea" to="." method="_on_interactivity_area_body_entered"]
-[connection signal="body_exited" from="interactivityArea" to="." method="_on_interactivity_area_body_exited"]
+[connection signal="is_inside_area" from="InteractiveArea" to="." method="_on_interactive_area_is_inside_area"]

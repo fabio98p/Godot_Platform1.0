@@ -53,4 +53,6 @@ shape = SubResource("RectangleShape2D_eund7")
 sprite_frames = SubResource("SpriteFrames_5stcv")
 autoplay = "default"
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="player_is_dead" from="." to="." method="_on_player_is_dead"]

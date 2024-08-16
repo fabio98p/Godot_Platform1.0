@@ -2,10 +2,18 @@ extends CharacterBody2D
 
 @onready var npc_collision: CollisionShape2D = $NpcCollision
 @onready var level_controller: Node = %LevelController
-@onready var interactivity_area: Area2D = $interactivityArea
+#@onready var interactivity_area: Area2D = $interactivityArea
+
+@onready var interactive_area: InteractiveArea = $InteractiveArea
+
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+
+func _ready() -> void:
+	for child in get_children():
+		if child is InteractiveArea:
+			child.connect("is_inside_area", Callable(self, "_on_interactive_area_is_inside_area"))
 
 #func _process(delta: float) -> void:
 	#pass
@@ -33,8 +41,13 @@ func start_interaction():
 	print("dialugue start correctly")
 
 func _on_interactivity_area_body_entered(body: Node2D) -> void:
+	
 	level_controller.enable_interactive_area(true, self)
 
 
 func _on_interactivity_area_body_exited(body: Node2D) -> void:
 	level_controller.enable_interactive_area(false, null)
+
+
+func _on_interactive_area_is_inside_area() -> void:
+	pass # Replace with function body.

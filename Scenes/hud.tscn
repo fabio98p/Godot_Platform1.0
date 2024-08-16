@@ -1,56 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://clftphvb6jt3d"]
+[gd_scene load_steps=2 format=3 uid="uid://clftphvb6jt3d"]
 
-[ext_resource type="FontFile" uid="uid://n3r60nunhudw" path="res://Assets/assets_brackeysgames/fonts/PixelOperator8-Bold.ttf" id="1_1rhu3"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_c04l1"]
 
-[sub_resource type="GDScript" id="GDScript_pg4e2"]
-script/source = "extends Camera2D
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_c04l1")
 
+[node name="Healt" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ciaooo"
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[node name="HUD" type="Camera2D"]
-limit_bottom = 270
-script = SubResource("GDScript_pg4e2")
-
-[node name="health" type="Label" parent="."]
-offset_left = -307.0
-offset_top = -147.0
-offset_right = -37.0
-offset_bottom = -60.0
-theme_override_fonts/font = ExtResource("1_1rhu3")
-theme_override_font_sizes/font_size = 20
-text = "100 HP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-visible = false
-offset_left = -478.0
-offset_top = -188.0
-offset_right = -208.0
-offset_bottom = -101.0
-theme_override_fonts/font = ExtResource("1_1rhu3")
-theme_override_font_sizes/font_size = 44
-text = "100 MP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label3" type="Label" parent="."]
-visible = false
-offset_left = -482.0
-offset_top = -121.0
-offset_right = -53.0
-offset_bottom = -34.0
-theme_override_fonts/font = ExtResource("1_1rhu3")
-theme_override_font_sizes/font_size = 44
-text = "100 AMMO??"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Interact" type="Label" parent="."]
+offset_left = 255.0
+offset_top = 126.0
+offset_right = 337.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 10

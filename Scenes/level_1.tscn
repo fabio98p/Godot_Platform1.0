@@ -192,9 +192,6 @@ sources/2 = SubResource("TileSetAtlasSource_oytnw")
 [node name="Player" parent="." instance=ExtResource("1_lo510")]
 unique_name_in_owner = true
 
-[node name="HUD" parent="Player" instance=ExtResource("2_yb2px")]
-script = null
-
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-297, 31)
 tile_set = SubResource("TileSet_l3vvw")
@@ -214,7 +211,7 @@ position = Vector2(1, 271)
 shape = SubResource("WorldBoundaryShape2D_ypn3o")
 
 [node name="NPC" parent="." instance=ExtResource("6_6cd7j")]
-position = Vector2(-112, -41)
+position = Vector2(-121, -10)
 
 [node name="Damagezone" type="Area2D" parent="."]
 script = ExtResource("7_mnx42")
@@ -227,6 +224,9 @@ shape = SubResource("CircleShape2D_emm75")
 position = Vector2(88, 20)
 scale = Vector2(0.179688, 0.203125)
 texture = ExtResource("8_mdblc")
+
+[node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_yb2px")]
+player = NodePath("../Player")
 
 [connection signal="player_is_dead" from="Player" to="LevelController" method="_on_player_player_is_dead"]
 [connection signal="player_entered_damagezone" from="Damagezone" to="Player" method="_on_damagezone_player_entered_damagezone"]
