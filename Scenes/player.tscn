@@ -318,6 +318,3 @@ animation = &"Roll"
 autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[connection signal="player_is_dead" from="." to="." method="_on_player_is_dead"]
-[connection signal="player_take_damage" from="." to="." method="_on_player_take_damage"]

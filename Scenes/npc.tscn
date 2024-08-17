@@ -66,5 +66,3 @@ script = ExtResource("3_rnj2w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea"]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_3ca0a")
-
-[connection signal="is_inside_area" from="InteractiveArea" to="." method="_on_interactive_area_is_inside_area"]
