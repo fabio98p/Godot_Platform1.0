@@ -314,7 +314,7 @@ shape = SubResource("RectangleShape2D_eund7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5stcv")
-animation = &"Roll"
+animation = &"Jump"
 autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]

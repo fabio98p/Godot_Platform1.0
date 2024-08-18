@@ -19,8 +19,6 @@ var is_inside_interactive_area: bool
 signal player_is_dead
 signal player_take_damage
 
-
-
 func _ready() -> void:
 	#connect to all needed signal
 	player_take_damage.connect(Callable(self, "_on_player_take_damage"))
@@ -59,7 +57,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func animation_handler(direction):
-	
 	# handle special animation
 	if Input.is_action_just_pressed("Roll") and is_on_floor():
 		special_animation_is_running = true
@@ -77,7 +74,7 @@ func animation_handler(direction):
 	# handle the direction of the animation
 	if direction == 1:
 		animated_sprite_2d.flip_h = false
-	else:
+	elif direction == -1:
 		animated_sprite_2d.flip_h = true
 	
 	animated_sprite_2d.animation = animation_type
