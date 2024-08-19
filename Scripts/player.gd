@@ -19,8 +19,11 @@ var is_inside_interactive_area: bool
 signal player_is_dead
 signal player_take_damage
 
+@export var collision_map: TileMapLayer
+
 func _ready() -> void:
 	#connect to all needed signal
+	player_is_dead.connect(Callable(self, "_on_player_is_dead"))
 	player_take_damage.connect(Callable(self, "_on_player_take_damage"))
 	animated_sprite_2d.animation_finished.connect(Callable(self, "_animation_finished"))
 	for node in Utils.get_all_nodes():
@@ -53,6 +56,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+	# Check for the tile under the player
+	if collision_map:
+		check_for_dead_tile()
+
 	animation_handler(direction)
 	move_and_slide()
 
@@ -78,6 +85,18 @@ func animation_handler(direction):
 		animated_sprite_2d.flip_h = true
 	
 	animated_sprite_2d.animation = animation_type
+
+func check_for_dead_tile():
+	# get position of the player on the tilemap
+	var player_tile_position = collision_map.local_to_map(global_position)
+	# get tile ID
+	var tile_data = collision_map.get_cell_tile_data(player_tile_position)
+	if tile_data != null:
+		#search for deadTile
+		var dead_tile = tile_data.get_custom_data("deadTile")
+		if dead_tile == true:
+			current_health = 0
+			player_is_dead.emit()
 
 func take_damage(damage: int):
 	current_health -= damage
