@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://8jnhn32if6oj"]
+
+[ext_resource type="Script" path="res://ModularPlayer/main_player_script.gd" id="1_str80"]
+[ext_resource type="Texture2D" uid="uid://btt43rkesuevg" path="res://icon.svg" id="1_tqgco"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yafog"]
+size = Vector2(122, 126)
+
+[node name="ModularPlayer" type="CharacterBody2D"]
+script = ExtResource("1_str80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yafog")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tqgco")
+
+[node name="Camera2D" type="Camera2D" parent="."]
