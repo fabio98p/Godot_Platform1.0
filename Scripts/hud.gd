@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name Game_Hud
+
 @export var player : Player  
 @onready var health_label: Label = $Healt
 @onready var interact_label: Label = $Interact
