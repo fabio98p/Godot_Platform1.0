@@ -17,6 +17,6 @@ texture = ExtResource("1_tqgco")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="CurrentStateLabel" type="Label" parent="."]
+[node name="CurrentState" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0

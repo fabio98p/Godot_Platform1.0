@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bolynyyobgkop" path="res://Assets/Legacy-Fantasy - High Forest 2.3/Character/Jump-Start/Jump-Start-Sheet.png" id="4_o4p5v"]
 [ext_resource type="Texture2D" uid="uid://cilbq1jmxocd0" path="res://Assets/Legacy-Fantasy - High Forest 2.3/Character/Jumlp-All/Jump-All-Sheet.png" id="5_fhfe2"]
 [ext_resource type="Script" path="res://Scripts/Character/character_state_machine.gd" id="7_kc56m"]
-[ext_resource type="Script" path="res://Scripts/Character/ground_state.gd" id="8_1wrwh"]
-[ext_resource type="Script" path="res://Scripts/Character/air_state.gd" id="9_68hlb"]
-[ext_resource type="Script" path="res://Scripts/Character/landing_state.gd" id="10_bea7u"]
+[ext_resource type="Script" path="res://ModularPlayer/StateMacchine/idle_state.gd" id="8_1wrwh"]
+[ext_resource type="Script" path="res://ModularPlayer/StateMacchine/jump_state.gd" id="9_68hlb"]
+[ext_resource type="Script" path="res://ModularPlayer/StateMacchine/walk_state.gd" id="10_bea7u"]
 [ext_resource type="Script" path="res://Scripts/Character/state_debug_label.gd" id="11_dpqxy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgp67"]
