@@ -1,16 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://8jnhn32if6oj"]
+[gd_scene load_steps=9 format=3 uid="uid://8jnhn32if6oj"]
 
 [ext_resource type="Script" path="res://ModularPlayer/main_player_script.gd" id="1_str80"]
 [ext_resource type="Texture2D" uid="uid://btt43rkesuevg" path="res://icon.svg" id="1_tqgco"]
+[ext_resource type="Script" path="res://ModularPlayer/StateMacchine/state_macchine.gd" id="3_3wqq7"]
+[ext_resource type="Script" path="res://ModularPlayer/StateMacchine/Idle.gd" id="4_dkym3"]
+[ext_resource type="Script" path="res://ModularPlayer/StateMacchine/Walk.gd" id="5_bbqoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yafog"]
 size = Vector2(122, 126)
+
+[sub_resource type="Animation" id="Animation_5ntfq"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07kh0"]
+_data = {
+"idle": SubResource("Animation_5ntfq")
+}
 
 [node name="ModularPlayer" type="CharacterBody2D"]
 script = ExtResource("1_str80")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yafog")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_07kh0")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tqgco")
@@ -20,3 +37,12 @@ texture = ExtResource("1_tqgco")
 [node name="CurrentStateLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="StateMacchine" type="Node" parent="."]
+script = ExtResource("3_3wqq7")
+
+[node name="Idle" type="Node" parent="StateMacchine"]
+script = ExtResource("4_dkym3")
+
+[node name="Walk" type="Node" parent="StateMacchine"]
+script = ExtResource("5_bbqoq")
