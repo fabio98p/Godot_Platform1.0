@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba4ytvp0jxldq"]
+
+[ext_resource type="Texture2D" uid="uid://d4cf3xx8b5vjo" path="res://player2/assets_player01.png" id="1_5h3nk"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Body" type="Polygon2D" parent="."]
+position = Vector2(49, 85)
+offset = Vector2(-50, -74)
+texture = ExtResource("1_5h3nk")
+polygon = PackedVector2Array(22.9994, 14.6731, 41.0704, 14.3694, 40.4124, 39.7802, 22.5944, 40.7926)
+uv = PackedVector2Array(22.9994, 14.6731, 41.0704, 14.3694, 40.4124, 39.7802, 22.5944, 40.7926)
+
+[node name="LeftArm" type="Polygon2D" parent="."]
+
+[node name="RightArm" type="Polygon2D" parent="."]
+
+[node name="RightLeg" type="Polygon2D" parent="."]
+
+[node name="LeftLeg" type="Polygon2D" parent="."]
+
+[node name="Head" type="Polygon2D" parent="."]

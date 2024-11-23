@@ -1,10 +1,101 @@
-[gd_scene load_steps=9 format=3 uid="uid://8jnhn32if6oj"]
+[gd_scene load_steps=9 format=3 uid="uid://dqv4v6l3ycgyt"]
 
-[ext_resource type="Script" path="res://ModularPlayer/main_player_script.gd" id="1_str80"]
 [ext_resource type="Texture2D" uid="uid://btt43rkesuevg" path="res://icon.svg" id="1_tqgco"]
 [ext_resource type="Script" path="res://ModularPlayer/StateMacchine/state_macchine.gd" id="3_3wqq7"]
 [ext_resource type="Script" path="res://ModularPlayer/StateMacchine/Idle.gd" id="4_dkym3"]
 [ext_resource type="Script" path="res://ModularPlayer/StateMacchine/Walk.gd" id="5_bbqoq"]
+
+[sub_resource type="GDScript" id="GDScript_xmr4c"]
+script/source = "extends CharacterBody2D
+
+enum Ability {
+	move,
+	jump,
+	double_jump,
+	dash,
+	roll,
+	terrain_mod,
+	kill_collision,
+	damage_collision,
+}
+
+
+var current_state: Utils.States = Utils.States.idle
+@onready var current_state_label: Label = $CurrentStateLabel
+
+@export var modules: Array[Ability] = [
+	Ability.move,
+	Ability.jump
+]
+
+
+var scripts = []
+
+func _ready() -> void:
+	for module in modules:
+		if module == Ability.move:
+			var script = preload(\"res://ModularPlayer/Modules/MoveModule/move.gd\")
+			var script_instance = script.new()
+			scripts.append(script_instance)
+			script_instance.module_ready(self)
+		if module == Ability.jump:
+			var script = preload(\"res://ModularPlayer/Modules/JumpModule/jump.gd\")
+			var script_instance = script.new()
+			scripts.append(script_instance)
+			script_instance.module_ready(self)
+		#if module == Ability.double_jump:
+			#var script = load('res://ModularPlayer/Modules/JumpModule/jump.gd')
+			#var script_instance = script.new()
+			#scripts.append(script_instance)
+			#script_instance.module_ready(self)
+		#if module == Ability.dash:
+			#var script = load('res://ModularPlayer/Modules/JumpModule/jump.gd')
+			#var script_instance = script.new()
+			#scripts.append(script_instance)
+			#script_instance.module_ready(self)
+		#if module == Ability.roll:
+			#var script = load('res://ModularPlayer/Modules/JumpModule/jump.gd')
+			#var script_instance = script.new()
+			#scripts.append(script_instance)
+			#script_instance.module_ready(self)
+		#if module == Ability.terrain_mod:
+			#var script = load('res://ModularPlayer/Modules/JumpModule/jump.gd')
+			#var script_instance = script.new()
+			#scripts.append(script_instance)
+			#script_instance.module_ready(self)
+		#if module == Ability.kill_collision:
+			#var script = load('res://ModularPlayer/Modules/JumpModule/jump.gd')
+			#var script_instance = script.new()
+			#scripts.append(script_instance)
+			#script_instance.module_ready(self)	
+		#if module == Ability.damage_collision:
+			#var script = load('res://ModularPlayer/Modules/JumpModule/jump.gd')	
+			#var script_instance = script.new()
+			#scripts.append(script_instance)
+			#script_instance.module_ready(self)
+
+		#var script_instance = script.new()
+		#scripts.append(script_instance)
+		#script_instance.module_ready(self)
+	
+	
+func _physics_process(delta: float) -> void:
+	current_state_label.text = Utils.States.keys()[current_state]
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	#print(is_on_floor())
+	if current_state == Utils.States.fall or current_state == Utils.States.jump and is_on_floor():
+		current_state = Utils.States.idle 
+		print(\"heeeerre\")
+		
+
+	# Use Modules
+	for script in scripts:
+		script.module_physics_process(self)
+
+	move_and_slide()
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yafog"]
 size = Vector2(122, 126)
@@ -18,7 +109,7 @@ _data = {
 }
 
 [node name="ModularPlayer" type="CharacterBody2D"]
-script = ExtResource("1_str80")
+script = SubResource("GDScript_xmr4c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yafog")
